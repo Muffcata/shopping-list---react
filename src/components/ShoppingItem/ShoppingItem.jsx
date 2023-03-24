@@ -12,7 +12,11 @@ export class ShoppingItem extends Component {
     alert(`${this.props.item.name} is going to be removed`);
     console.warn('Why do you hate me?');
   }
-
+  // componentDidUpdate(prevProps) {
+  //   console.log('previous:', prevProps.item);
+  //   console.log('current:', this.props.item);
+  //   console.log('Is it the same?:', prevProps.item === this.props.item);
+  // }
   render() {
     const { item } = this.props;
 

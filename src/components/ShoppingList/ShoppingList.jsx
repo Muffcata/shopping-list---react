@@ -58,16 +58,14 @@ export class ShoppingList extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.items.length !== this.state.length) {
-      console.log('Update list');
       const shoppingListStringified = JSON.stringify(this.state.items);
       window.localStorage.setItem('shoppin-list', shoppingListStringified);
     }
   }
   render() {
-    //   const deleteItems
     return (
       <div className={style.list}>
-        <h1>Add ingredients to shopping-list:</h1>
+        <h1>Add ingredients:</h1>
         <form className={style.form} onSubmit={this.addItem}>
           <input
             className={style.input}
