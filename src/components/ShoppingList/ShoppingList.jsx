@@ -2,6 +2,14 @@ import { Component } from 'react';
 import { ShoppingItem } from 'components/ShoppingItem/ShoppingItem';
 import style from './ShoppingList.module.css';
 
+//componentDidMount -
+//we take with localStorage last saved state
+// componentDidUpdate -
+// we save changed state to localStorage
+
+// componentWillUnmount -
+//   alert informating about removing with list
+
 export class ShoppingList extends Component {
   state = {
     items: [],
@@ -35,7 +43,26 @@ export class ShoppingList extends Component {
   //       return; // props from parents >100 is not render
   //     }
   //   }
+  componentDidMount() {
+    const list = window.localStorage.getItem('shoppin-list');
+    console.log('list');
+    if (!list) return; //if list no exist return nothing
+    try {
+      this.setState({
+        items: JSON.parse(list),
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.items.length !== this.state.length) {
+      console.log('Update list');
+      const shoppingListStringified = JSON.stringify(this.state.items);
+      window.localStorage.setItem('shoppin-list', shoppingListStringified);
+    }
+  }
   render() {
     //   const deleteItems
     return (

@@ -8,6 +8,11 @@ export class ShoppingItem extends Component {
     deleteItems(id);
   };
 
+  componentWillUnmount() {
+    alert(`${this.props.item.name} is going to be removed`);
+    console.warn('Why do you hate me?');
+  }
+
   render() {
     const { item } = this.props;
 
